@@ -1,6 +1,6 @@
 # commands/theme.py
 COMMAND_NAME = "theme"
-ALIASES = []
+ALIASES = ["set theme"]
 DESCRIPTION = "Theme utilities (use 'set theme <name>')"
 USAGE = "set theme <name>"
 

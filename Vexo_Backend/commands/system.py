@@ -10,6 +10,25 @@ from core.logger import log_event
 from commands import gpu as gpu_module
 # optional helper if you split GPU into core.gpu
 
+def get_system_data():
+    cpu_per_core = psutil.cpu_percent(percpu=True)
+    ram = psutil.virtual_memory()
+    disk = psutil.disk_usage('/')
+    
+    data = {
+        "os": f"{platform.system()} {platform.release()}",
+        "version": platform.version(),
+        "processor": platform.processor(),
+        "machine": platform.machine(),
+        "cpu_total_usage": psutil.cpu_percent(),
+        "cpu_per_core": cpu_per_core,
+        "ram_percent": ram.percent,
+        "ram_total_gb": round(ram.total / (1024**3), 2),
+        "disk_percent": disk.percent,
+        "disk_total_gb": round(disk.total / (1024**3), 2),
+    }
+    return data
+
 def run(args):
     print(theme_header() + "\n[ VEXO SYSTEM INFO ]" + theme_reset())
 

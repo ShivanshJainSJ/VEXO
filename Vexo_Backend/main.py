@@ -39,13 +39,6 @@ def main():
             print(theme_warn() + "Vexo: Please enter a valid input!" + Style.RESET_ALL)
             continue
 
-        # special-case: set theme command (multi-word)
-        if user_input.startswith("set theme"):
-            theme_name = user_input.replace("set theme", "").strip()
-            from commands import theme as theme_mod
-            theme_mod.run([theme_name])
-            continue
-
         # route command
         matched = router.match_and_execute(user_input)
         if not matched:
